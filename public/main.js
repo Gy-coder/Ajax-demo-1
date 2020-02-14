@@ -68,3 +68,20 @@ getXML.onclick = () => {
     }
     request.send()
 }
+let n = 1
+pages.onclick = () => {
+    n += 1
+    const request = new XMLHttpRequest()
+    request.open('GET', `page${n}`)
+    request.onreadystatechange = () => {
+        if (request.readyState === 4 && request.status === 200) {
+            let array = JSON.parse(request.response)
+            array.forEach(item => {
+                let li = document.createElement('li')
+                li.innerText = item.id
+                xxx.appendChild(li)
+            });
+        }
+    }
+    request.send()
+}
